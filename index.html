@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="./main.css" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./app.webmanifest" />
+
+    <!-- App Title -->
+    <title>IT202-Spring2021-project1</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <pwa-update swpath="./sw.js"></pwa-update>
     
-</body>
+    <!-- Register Service Worker -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"
+    ></script>
+
+    <!-- App JavaScript -->
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>
