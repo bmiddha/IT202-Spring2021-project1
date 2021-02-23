@@ -1,4 +1,4 @@
-import { BaseView } from "../baseview/baseview.js";
+import { BaseView } from "../baseView/baseView.js";
 
 const hydrate = (html) => {
   class MapView extends BaseView {
@@ -9,6 +9,8 @@ const hydrate = (html) => {
   }
 
   window.customElements.define("app-map-view", MapView);
+  
+  return MapView;
 };
 
 export default hydrate;

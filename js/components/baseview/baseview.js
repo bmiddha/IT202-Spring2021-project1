@@ -1,30 +1,26 @@
 export class BaseView extends HTMLElement {
-  constructor() {
+  constructor(name) {
     super();
+    this.name = name;
     this.wrapper = document.createElement("div");
-    this.wrapper.classList.add("view-wrapper");
     this.style.position = "relative";
     this.wrapper.style.position = "relative";
+    this.wrapper.classList.add("container");
+    this.wrapper.classList.add("pt-4");
     this.appendChild(this.wrapper);
   }
 
-  // Fires when an instance was inserted into the document
-  connectedCallback() {
-    this.wrapper.animate(
+  animateIn() {
+    return this.wrapper.animate(
       [
         { opacity: 0, top: "25px" },
         { opacity: 1, top: "0px" },
       ],
-      250
+      350
     );
   }
 
-  // Fires when an instance was removed from the document
-  async disconnectedCallback() {
-    this.wrapper.animate([
-      { opacity: 1, top: "0px" },
-      { opacity: 0, top: "-25px" },
-    ], 500);
-    return animation.finished;
+  connectedCallback() {
+    this.animateIn();
   }
 }

@@ -1,8 +1,7 @@
 export const componentLibrary = {};
 
 export const lazyLoadComponent = async (componentName) => {
-  if (componentLibrary.hasOwnProperty(componentName)) {
-  } else {
+  if (!componentLibrary.hasOwnProperty(componentName)) {
     const [component, html] = [
       (await import(`../components/${componentName}/${componentName}.js`))
         .default,

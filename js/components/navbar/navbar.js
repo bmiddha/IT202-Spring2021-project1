@@ -26,5 +26,7 @@ const hydrate = (html) => {
   }
 
   window.customElements.define("app-navbar", NavBar);
+
+  return NavBar;
 };
 export default hydrate;
