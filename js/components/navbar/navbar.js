@@ -3,19 +3,26 @@ const hydrate = (html) => {
     constructor() {
       super();
       this.innerHTML = html;
+      this.active = "home";
+      this.updateActiveLink();
     }
 
-    // Fires when an instance was inserted into the document
-    connectedCallback() {}
+    updateActiveLink() {
+      const view = window.location.hash.split("#").pop();
+      if (view) {
+        this.view = view;
+        document.querySelector(`.active`)?.classList.remove("active");
+        document.querySelector(`#${this.view}_nav`).classList.add("active");
+      }
+    }
 
-    // Fires when an instance was removed from the document
-    disconnectedCallback() {}
+    connectedCallback() {
+      window.addEventListener("hashchange", this.updateActiveLink);
+    }
 
-    // Fires when an attribute was added, removed, or updated
-    attributeChangedCallback(attrName, oldVal, newVal) {}
-
-    // Fires when an element is moved to a new document
-    adoptedCallback() {}
+    disconnectedCallback() {
+      window.removeEventListener("hashchange", this.updateActiveLink);
+    }
   }
 
   window.customElements.define("app-navbar", NavBar);
