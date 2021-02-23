@@ -1,43 +1,40 @@
-import { lazyLoadComponent } from "../util/lazyLoadComponent.js";
+import { lazyLoadComponent } from "../../util/lazyLoadComponent.js";
 
 const VALID_VIEWS = ["home", "map", "form", "about", "data"];
 
 export class RouterView extends HTMLElement {
   constructor() {
     super();
-    this.#changeView();
+    this.changeView();
   }
 
-  #changeView = async () => {
+  changeView = async () => {
     const view = window.location.hash.split("#").pop();
     if (view) {
-      console.log(view);
       if (VALID_VIEWS.includes(view)) {
         this.view = view;
         await lazyLoadComponent(this.view);
         this.innerHTML = `<app-${this.view}-view></app-${this.view}-view>`;
-        console.log(`app-${window.location.hash.split("#").pop()}-view`);
       }
     } else {
       window.location.hash = "#home";
     }
   };
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log("Custom square element attributes changed.");
+    console.log(name, oldValue, newValue);
+  }
+
   // Fires when an instance was inserted into the document
   connectedCallback() {
-    window.onhashchange = this.#changeView;
+    window.addEventListener("hashchange", this.changeView);
   }
 
   // Fires when an instance was removed from the document
   disconnectedCallback() {
-    window.onhashchange = undefined;
+    window.removeEventListener("hashchange", this.changeView)
   }
-
-  // Fires when an attribute was added, removed, or updated
-  attributeChangedCallback(attrName, oldVal, newVal) {}
-
-  // Fires when an element is moved to a new document
-  adoptedCallback() {}
 }
 
 window.customElements.define("app-router-view", RouterView);

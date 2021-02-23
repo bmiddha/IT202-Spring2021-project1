@@ -1,4 +1,29 @@
-var CACHE = "cache-update-and-refresh";
+const CACHE = "cache-update-and-refresh";
+const HTML_COMPONENTS_TO_CACHE = [
+  "navbar",
+  "home",
+  "form",
+  "data",
+  "map",
+  "about",
+];
+const COMPONENTS_TO_CACHE = ["router", "pwa"];
+
+const FILES_TO_CACHE = [
+  "./index.html",
+  "./",
+  "./js/index.js",
+  "./icons/icon-192x192.png",
+  "./icons/icon-256x256.png",
+  "./icons/icon-384x384.png",
+  "./icons/icon-512x512.png",
+  ...[...COMPONENTS_TO_CACHE, ...HTML_COMPONENTS_TO_CACHE].map(
+    (component) => `./js/components/${component}/${component}.js`
+  ),
+  ...HTML_COMPONENTS_TO_CACHE.map(
+    (component) => `./js/components/${component}/${component}.html`
+  ),
+];
 
 // On install, cache some resource.
 self.addEventListener("install", function (evt) {
@@ -8,16 +33,7 @@ self.addEventListener("install", function (evt) {
   // returning promise resolves.
   evt.waitUntil(
     caches.open(CACHE).then(function (cache) {
-      cache.addAll([
-        "./index.html",
-        "./",
-        "./js/index.js",
-        "./js/components/home/home.js",
-        "./js/components/form/form.js",
-        "./js/components/map/map.js",
-        "./js/components/data/data.js",
-        "./js/components/about/about.js",
-      ]);
+      cache.addAll(FILES_TO_CACHE);
     })
   );
 });
@@ -38,25 +54,27 @@ self.addEventListener("fetch", function (evt) {
   );
 });
 
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
 // Open the cache where the assets were stored and search for the requested
 // resource. Notice that in case of no matching, the promise still resolves
 // but it does with `undefined` as value.
-function fromCache(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request);
-  });
+async function fromCache(request) {
+  const cache = await caches.open(CACHE);
+  return await cache.match(request);
 }
 
 // Update consists in opening the cache, performing a network request and
 // storing the new response data.
-function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response.clone()).then(function () {
-        return response;
-      });
-    });
-  });
+async function update(request) {
+  const cache = await caches.open(CACHE);
+  const response = await fetch(request);
+  await cache.put(request, response.clone());
+  return response;
 }
 
 // Sends a message to the clients.
