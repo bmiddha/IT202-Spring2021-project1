@@ -1,0 +1,12 @@
+.nav-item.active {
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.55);
+  border-bottom-width: 3px;
+  margin-bottom: 0px;
+}
+.nav-item {
+  border-bottom-width: 0px;
+  margin-bottom: 3px;
+  transition:  all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
