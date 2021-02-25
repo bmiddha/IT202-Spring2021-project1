@@ -41,7 +41,6 @@ const hydrate = (html) => {
     connectedCallback() {
       this.animateIn();
       this.drawForm();
-      viewRedirect("data");
     }
 
     drawForm() {
@@ -112,6 +111,7 @@ const hydrate = (html) => {
       const filtered = await getFilteredData(inputValues);
       console.log(filtered.length);
       console.log((await getApiData()).length);
+      viewRedirect("data");
     };
   }
 
