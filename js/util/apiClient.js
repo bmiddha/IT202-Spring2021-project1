@@ -1,4 +1,4 @@
-import { setFilter, getFilteredDataItems } from "./filtering.js";
+import { getFilteredDataItems } from "./filtering.js";
 
 const dataLocalStorageKey = "chicago-data";
 const filteredDataLocalStorageKey = "chicago-data-filtered";

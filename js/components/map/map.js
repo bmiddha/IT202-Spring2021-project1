@@ -29,7 +29,7 @@ const hydrate = (html) => {
 
       const mapOptions = {
         center: { lat: 41.87191466527637, lng: -87.64796955882323 },
-        zoom: 12,
+        zoom: 11,
       };
       await loader.load();
       this.map = new google.maps.Map(this.mapDiv, mapOptions);
