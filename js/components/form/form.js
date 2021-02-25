@@ -1,6 +1,7 @@
 import { getFilteredData, getApiData } from "../../util/apiClient.js";
 import { getFilter } from "../../util/filtering.js";
 import { BaseView } from "../baseView/baseView.js";
+import { viewRedirect } from "../router/router.js";
 
 const hydrate = (html) => {
   class FormView extends BaseView {
@@ -40,6 +41,7 @@ const hydrate = (html) => {
     connectedCallback() {
       this.animateIn();
       this.drawForm();
+      viewRedirect("data");
     }
 
     drawForm() {
