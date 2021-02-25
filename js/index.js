@@ -1,9 +1,8 @@
-import { lazyLoadComponent } from "./util/lazyLoadComponent.js";
 import "./components/router/router.js";
 import "./components/pwa/pwa.js";
+import "./components/navbar/navbar.js";
 
 const init = async () => {
-  await lazyLoadComponent("navbar");
   document.getElementById("root").innerHTML = `
     <app-pwa></app-pwa>
     <app-navbar></app-navbar>

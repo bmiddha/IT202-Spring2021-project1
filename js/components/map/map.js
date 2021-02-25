@@ -37,19 +37,27 @@ const hydrate = (html) => {
 
     async drawMarkers() {
       const locations = await getFilteredData();
-      this.markers = locations.map(
-        ({ community_area_name, pin, latitude, longitude, address, sq_ft }) => {
-          const position = {
-            lat: parseFloat(latitude),
-            lng: parseFloat(longitude),
-          };
-          if (position.lat && position.lng) {
-            const marker = new google.maps.Marker({
-              position,
-              map: this.map,
-              title: community_area_name,
-            });
-            const contentString = `
+      if (locations) {
+        this.markers = locations.map(
+          ({
+            community_area_name,
+            pin,
+            latitude,
+            longitude,
+            address,
+            sq_ft,
+          }) => {
+            const position = {
+              lat: parseFloat(latitude),
+              lng: parseFloat(longitude),
+            };
+            if (position.lat && position.lng) {
+              const marker = new google.maps.Marker({
+                position,
+                map: this.map,
+                title: community_area_name,
+              });
+              const contentString = `
             <div class="card">
               <div class="card-header">
                 ${pin}
@@ -69,18 +77,19 @@ const hydrate = (html) => {
               </div>
             </div>
             `;
-            const infowindow = new google.maps.InfoWindow({
-              content: contentString,
-            });
-            marker.addListener("click", () => {
-              infowindow.open(map, marker);
-            });
-            return marker;
-          } else {
-            return undefined;
+              const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+              });
+              marker.addListener("click", () => {
+                infowindow.open(map, marker);
+              });
+              return marker;
+            } else {
+              return undefined;
+            }
           }
-        }
-      );
+        );
+      }
     }
   }
   window.customElements.define("app-map-view", MapView);

@@ -21,7 +21,7 @@ const FILES_TO_CACHE = [
   "./icons/icon-256x256.png",
   "./icons/icon-384x384.png",
   "./icons/icon-512x512.png",
-  ...(UTIL_TO_CACHE.map(util => `$./js/utl/${util}`)),
+  ...(UTIL_TO_CACHE.map(util => `$./js/util/${util}`)),
   ...[...COMPONENTS_TO_CACHE, ...HTML_COMPONENTS_TO_CACHE].map(
     (component) => `./js/components/${component}/${component}.js`
   ),
