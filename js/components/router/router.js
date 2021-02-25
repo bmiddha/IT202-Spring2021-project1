@@ -2,6 +2,12 @@ import { lazyLoadComponent } from "../../util/lazyLoadComponent.js";
 
 const VALID_VIEWS = ["home", "map", "form", "about", "data"];
 
+export const viewRedirect = (view) => {
+  if (VALID_VIEWS.includes(view)) {
+    window.location.hash = `#${view}`;
+  }
+};
+
 export class RouterView extends HTMLElement {
   constructor() {
     super();
@@ -33,7 +39,7 @@ export class RouterView extends HTMLElement {
 
   // Fires when an instance was removed from the document
   disconnectedCallback() {
-    window.removeEventListener("hashchange", this.changeView)
+    window.removeEventListener("hashchange", this.changeView);
   }
 }
 

@@ -2,7 +2,7 @@
 import { Loader } from "https://cdn.skypack.dev/@googlemaps/js-api-loader";
 
 import { BaseView } from "../baseView/baseView.js";
-import { getData } from "../../util/apiClient.js";
+import { getFilteredData } from "../../util/apiClient.js";
 import { mapPing, ruler } from "../../util/icons.js";
 
 const googleMapsAPIKey = "AIzaSyD6ZIMU-bD2Z8J8oeWZwZQ86VI6NhAH6p8";
@@ -36,9 +36,9 @@ const hydrate = (html) => {
     }
 
     async drawMarkers() {
-      const locations = await getData();
+      const locations = await getFilteredData();
       this.markers = locations.map(
-        ({ id, community_area_name, pin, latitude, longitude, address, sq_ft }) => {
+        ({ community_area_name, pin, latitude, longitude, address, sq_ft }) => {
           const position = {
             lat: parseFloat(latitude),
             lng: parseFloat(longitude),

@@ -1,4 +1,4 @@
-import { getData } from "../../util/apiClient.js";
+import { getFilteredData } from "../../util/apiClient.js";
 import { mapPing, ruler } from "../../util/icons.js";
 import { BaseView } from "../baseView/baseView.js";
 
@@ -17,7 +17,7 @@ const hydrate = (html) => {
         this.wrapper.removeChild(this.cardsNode);
       }
       this.setLoading(true);
-      getData().then((data) => {
+      getFilteredData().then((data) => {
         this.setLoading(false);
         this.updateCards(data);
         this.wrapper.appendChild(this.cardsNode);

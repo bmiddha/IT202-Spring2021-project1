@@ -4,9 +4,15 @@
   border-bottom-width: 3px;
   margin-bottom: 0px;
 }
+.nav-item.active > .nav-link {
+  color: #000;
+}
 .nav-item {
   border-bottom-width: 0px;
   margin-bottom: 3px;
-  transition:  all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   box-sizing: border-box;
+}
+.nav-item > .nav-link {
+  transition: all 0.2s ease-in-out;
 }
