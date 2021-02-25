@@ -8,15 +8,20 @@ const HTML_COMPONENTS_TO_CACHE = [
   "about",
 ];
 const COMPONENTS_TO_CACHE = ["router", "pwa"];
+const UTIL_TO_CACHE = ["apiClient", "filtering", "icons", "lazyLoadComponent"];
 
 const FILES_TO_CACHE = [
   "./index.html",
   "./",
   "./js/index.js",
+  "./js/bootstrap.min.js",
+  "./css/bootstrap.min.css",
+  "./css/main.css",
   "./icons/icon-192x192.png",
   "./icons/icon-256x256.png",
   "./icons/icon-384x384.png",
   "./icons/icon-512x512.png",
+  ...(UTIL_TO_CACHE.map(util => `$./js/utl/${util}`)),
   ...[...COMPONENTS_TO_CACHE, ...HTML_COMPONENTS_TO_CACHE].map(
     (component) => `./js/components/${component}/${component}.js`
   ),
