@@ -1,6 +1,6 @@
 import { loadComponent } from "./util/loadComponent.js";
-import "./components/router/router.js";
-import "./components/pwa/pwa.js";
+import "./components/router.js";
+import "./components/pwa.js";
 
 const init = async () => {
   await loadComponent("navbar");

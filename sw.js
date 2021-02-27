@@ -1,6 +1,14 @@
 const CACHE = "cache-update-and-refresh";
-const HTML_COMPONENTS_TO_CACHE = ["navbar", "home", "data", "map", "about"];
-const COMPONENTS_TO_CACHE = ["router", "pwa", "form"];
+const COMPONENTS_TO_CACHE = [
+  "navbar",
+  "home",
+  "data",
+  "map",
+  "about",
+  "router",
+  "pwa",
+  "form",
+];
 const UTIL_TO_CACHE = ["data", "icons", "loadComponent"];
 
 const FILES_TO_CACHE = [
@@ -15,11 +23,8 @@ const FILES_TO_CACHE = [
   "./icons/icon-384x384.png",
   "./icons/icon-512x512.png",
   ...UTIL_TO_CACHE.map((util) => `$./js/util/${util}`),
-  ...[...COMPONENTS_TO_CACHE, ...HTML_COMPONENTS_TO_CACHE].map(
-    (component) => `./js/components/${component}/${component}.js`
-  ),
-  ...HTML_COMPONENTS_TO_CACHE.map(
-    (component) => `./js/components/${component}/${component}.html`
+  ...[...COMPONENTS_TO_CACHE].map(
+    (component) => `./js/components/${component}.js`
   ),
 ];
 

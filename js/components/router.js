@@ -1,4 +1,4 @@
-import { loadComponent } from "../../util/loadComponent.js";
+import { loadComponent } from "../util/loadComponent.js";
 
 const VALID_VIEWS = ["home", "map", "form", "about", "data"];
 

@@ -1,7 +1,7 @@
-import { getFilteredData } from "../../util/data.js";
-import { getFilter } from "../../util/data.js";
-import { BaseView } from "../baseView/baseView.js";
-import { viewRedirect } from "../router/router.js";
+import { getFilteredData } from "../util/data.js";
+import { getFilter } from "../util/data.js";
+import { BaseView } from "./baseView.js";
+import { viewRedirect } from "./router.js";
 
 class FormView extends BaseView {
   constructor() {
