@@ -4,7 +4,7 @@ class NavBar extends HTMLElement {
     this.innerHTML = `
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <span class="navbar-brand mb-0 h1"><img src="icons/icon-192x192.png" alt="Land Inventory" height="24"> Land Inventory</span>
+          <span class="navbar-brand mb-0 h1"><img src="icons/icon-72x72.png" alt="Land Inventory" height="24"> Land Inventory</span>
           <button
             class="navbar-toggler"
             type="button"
