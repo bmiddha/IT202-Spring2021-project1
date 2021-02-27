@@ -1,4 +1,4 @@
-import { lazyLoadComponent } from "../../util/lazyLoadComponent.js";
+import { loadComponent } from "../../util/loadComponent.js";
 
 const VALID_VIEWS = ["home", "map", "form", "about", "data"];
 
@@ -19,7 +19,7 @@ export class RouterView extends HTMLElement {
     if (view) {
       if (VALID_VIEWS.includes(view)) {
         this.view = view;
-        await lazyLoadComponent(this.view);
+        await loadComponent(this.view);
         this.innerHTML = `<app-${this.view}-view></app-${this.view}-view>`;
       }
     } else {
@@ -44,3 +44,5 @@ export class RouterView extends HTMLElement {
 }
 
 window.customElements.define("app-router-view", RouterView);
+
+export default RouterView;

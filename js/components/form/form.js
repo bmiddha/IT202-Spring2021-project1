@@ -1,66 +1,62 @@
-import { getFilteredData, getApiData } from "../../util/apiClient.js";
-import { getFilter } from "../../util/filtering.js";
+import { getFilteredData } from "../../util/data.js";
+import { getFilter } from "../../util/data.js";
 import { BaseView } from "../baseView/baseView.js";
 import { viewRedirect } from "../router/router.js";
 
-const hydrate = (html) => {
-  class FormView extends BaseView {
-    constructor() {
-      super("form");
-      this.wrapper.innerHTML = html;
-      this.inputs = [
-        {
-          type: "text",
-          id: "address",
-          label: "Address",
-        },
-        {
-          type: "text",
-          id: "ward",
-          label: "Ward Number",
-        },
-        {
-          type: "text",
-          id: "pin",
-          label: "Property Index Number",
-        },
-        {
-          type: "text",
-          id: "zip_code",
-          label: "Zip Code",
-        },
-        {
-          type: "number",
-          id: "sq_ft",
-          label: "Area (square feet)",
-        },
-      ];
-      console.log(this.inputs);
-    }
+class FormView extends BaseView {
+  constructor() {
+    super("form");
+    this.inputs = [
+      {
+        type: "text",
+        id: "address",
+        label: "Address",
+      },
+      {
+        type: "text",
+        id: "ward",
+        label: "Ward Number",
+      },
+      {
+        type: "text",
+        id: "pin",
+        label: "Property Index Number",
+      },
+      {
+        type: "text",
+        id: "zip_code",
+        label: "Zip Code",
+      },
+      {
+        type: "number",
+        id: "sq_ft",
+        label: "Area (square feet)",
+      },
+    ];
+    console.log(this.inputs);
+  }
 
-    connectedCallback() {
-      this.animateIn();
-      this.drawForm();
-    }
+  connectedCallback() {
+    this.animateIn();
+    this.drawForm();
+  }
 
-    drawForm() {
-      const cachedFilter = getFilter();
-      console.log(cachedFilter);
-      if (!this.form) {
-        this.form = document.createElement("form");
-        this.wrapper.appendChild(this.form);
-      }
-      if (!this.form.onsubmit) {
-        this.form.onsubmit = this.submitHandler;
-      }
-      const inputsHtml = this.inputs.map(({ id, label }) => {
-        const value = cachedFilter?.[id]?.value
-          ? cachedFilter?.[id]?.value
-          : "";
-        const regex = cachedFilter?.[id]?.regex
-          ? cachedFilter?.[id]?.regex
-          : false;
-        return `
+  drawForm() {
+    const cachedFilter = getFilter();
+    console.log(cachedFilter);
+    if (!this.form) {
+      this.form = document.createElement("form");
+      this.wrapper.appendChild(this.form);
+    }
+    if (!this.form.onsubmit) {
+      this.form.onsubmit = this.submitHandler;
+    }
+    const inputsHtml = this.inputs.map(({ id, label }) => {
+      const value = cachedFilter?.[id]?.value ? cachedFilter?.[id]?.value : "";
+      const regex = cachedFilter?.[id]?.regex
+        ? cachedFilter?.[id]?.regex
+        : false;
+      return `
           <!-- ${id} | ${label} | input -->
           <div class="form-group">
             <label for="${id}-input" class="form-label">${label}</label>
@@ -86,38 +82,31 @@ const hydrate = (html) => {
             </div>
           </div>
         `;
-      });
-      this.form.innerHTML = `
+    });
+    this.form.innerHTML = `
         ${inputsHtml.join("")}
         <button type="submit" class="btn btn-primary">Submit</button>
       `;
-      this.inputs = this.inputs.map((input) => ({
-        ...input,
-        inputTag: document.getElementById(`${input.id}-input`),
-        regexTag: document.getElementById(`${input.id}-regex`),
-      }));
-    }
-
-    submitHandler = async (event) => {
-      event.preventDefault();
-      const inputValues = Object.fromEntries(
-        this.inputs.map(({ id, inputTag, regexTag, type }) => [
-          id,
-          { value: inputTag.value, regex: regexTag.checked, type },
-        ])
-      );
-      console.log(inputValues);
-      // set loading
-      const filtered = await getFilteredData(inputValues);
-      console.log(filtered.length);
-      console.log((await getApiData()).length);
-      viewRedirect("data");
-    };
+    this.inputs = this.inputs.map((input) => ({
+      ...input,
+      inputTag: document.getElementById(`${input.id}-input`),
+      regexTag: document.getElementById(`${input.id}-regex`),
+    }));
   }
 
-  window.customElements.define("app-form-view", FormView);
+  submitHandler = async (event) => {
+    event.preventDefault();
+    const inputValues = Object.fromEntries(
+      this.inputs.map(({ id, inputTag, regexTag, type }) => [
+        id,
+        { value: inputTag.value, regex: regexTag.checked, type },
+      ])
+    );
+    await getFilteredData(inputValues);
+    viewRedirect("data");
+  };
+}
 
-  return FormView;
-};
+window.customElements.define("app-form-view", FormView);
 
-export default hydrate;
+export default FormView;

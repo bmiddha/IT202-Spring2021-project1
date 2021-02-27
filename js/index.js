@@ -1,8 +1,9 @@
+import { loadComponent } from "./util/loadComponent.js";
 import "./components/router/router.js";
 import "./components/pwa/pwa.js";
-import "./components/navbar/navbar.js";
 
 const init = async () => {
+  await loadComponent("navbar");
   document.getElementById("root").innerHTML = `
     <app-pwa></app-pwa>
     <app-navbar></app-navbar>

@@ -29,4 +29,5 @@ const hydrate = (html) => {
 
   return NavBar;
 };
+
 export default hydrate;

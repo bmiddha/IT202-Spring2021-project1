@@ -24,3 +24,5 @@ export class BaseView extends HTMLElement {
     this.animateIn();
   }
 }
+
+export default BaseView;
