@@ -10,8 +10,9 @@ const googleMapsAPIKey = "AIzaSyD6ZIMU-bD2Z8J8oeWZwZQ86VI6NhAH6p8";
 class MapView extends BaseView {
   constructor() {
     super();
+    this.wrapper.className = "container-fluid pt-4";
     this.wrapper.innerHTML = `
-      <div id="map" style="width: 100%; min-height: 400px">
+      <div id="map" style="width: 100%; height: calc(100vh - 100px);">
         <div id="map-loading" class="pt-3 text-center">
           <div class="spinner-border" role="status"></div>
           <p class="lead">Loading</p>

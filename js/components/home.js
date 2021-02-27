@@ -4,17 +4,29 @@ class HomeView extends BaseView {
   constructor() {
     super("home");
     this.wrapper.innerHTML = `
-      <p>This app lets you search the City of Chicago-Owned Land Inventory data.</p>
+      <h1 class="display-3">Chicago Land Inventory Data</h2>
+      <h2>Getting Started</h2>
       <p>
-        You can find more information about the data at
-        <a href="https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp"
-          >https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp</a
-        >
+        View the land inventory data on the 
+        <button type="button" class="btn btn-link p-0 redirect-btn" redirect-to="data">
+          data page
+        </button> as well as a map view on the 
+        <button type="button" class="btn btn-link p-0 redirect-btn" redirect-to="map">
+          map page
+        </button>.
       </p>
       <p>
-        To get started, navigate to the Search screen, make your selections and
-        search. You cna view a list of the results on the Results screen or view a map
-        of the results on the Map screen.
+        To filter the data use the filters on the 
+        <button type="button" class="btn btn-link p-0 redirect-btn" redirect-to="filters">
+          filters page
+        </button>.
+      </p>
+      <h2>Learn More</h2>
+      <p>
+        You can find more infiltersation about the data at
+        <a href="https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp">
+          https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp
+        </a>
       </p>
       `;
   }

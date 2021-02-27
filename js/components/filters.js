@@ -3,9 +3,9 @@ import { getFilter } from "../util/data.js";
 import { BaseView } from "./baseView.js";
 import { viewRedirect } from "./router.js";
 
-class FormView extends BaseView {
+class FiltersView extends BaseView {
   constructor() {
-    super("form");
+    super("filters");
     this.inputs = [
       {
         type: "text",
@@ -105,6 +105,6 @@ class FormView extends BaseView {
   };
 }
 
-window.customElements.define("app-form-view", FormView);
+window.customElements.define("app-filters-view", FiltersView);
 
-export default FormView;
+export default FiltersView;

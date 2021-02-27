@@ -7,9 +7,9 @@ const COMPONENTS_TO_CACHE = [
   "about",
   "router",
   "pwa",
-  "form",
+  "filters",
 ];
-const UTIL_TO_CACHE = ["data", "icons", "loadComponent"];
+const UTIL_TO_CACHE = ["data", "icons"];
 
 const FILES_TO_CACHE = [
   "./index.html",
@@ -51,7 +51,7 @@ self.addEventListener("fetch", function (evt) {
   // the cache is updated.
   evt.waitUntil(
     update(evt.request)
-      // Finally, send a message to the client to inform it about the
+      // Finally, send a message to the client to infilters it about the
       // resource is up to date.
       .then(refresh)
   );
@@ -71,7 +71,7 @@ async function fromCache(request) {
   return await cache.match(request);
 }
 
-// Update consists in opening the cache, performing a network request and
+// Update consists in opening the cache, perfiltersing a network request and
 // storing the new response data.
 async function update(request) {
   const cache = await caches.open(CACHE);

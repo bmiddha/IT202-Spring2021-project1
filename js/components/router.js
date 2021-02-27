@@ -1,6 +1,10 @@
-import { loadComponent } from "../util/loadComponent.js";
+import "../components/about.js";
+import "../components/home.js";
+import "../components/filters.js";
+import "../components/map.js";
+import "../components/data.js";
 
-const VALID_VIEWS = ["home", "map", "form", "about", "data"];
+const VALID_VIEWS = ["home", "map", "filters", "about", "data"];
 
 export const viewRedirect = (view) => {
   if (VALID_VIEWS.includes(view)) {
@@ -19,7 +23,6 @@ export class RouterView extends HTMLElement {
     if (view) {
       if (VALID_VIEWS.includes(view)) {
         this.view = view;
-        await loadComponent(this.view);
         this.innerHTML = `<app-${this.view}-view></app-${this.view}-view>`;
       }
     } else {

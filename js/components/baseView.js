@@ -5,8 +5,7 @@ export class BaseView extends HTMLElement {
     this.wrapper = document.createElement("div");
     this.style.position = "relative";
     this.wrapper.style.position = "relative";
-    this.wrapper.classList.add("container");
-    this.wrapper.classList.add("pt-4");
+    this.wrapper.className = "container pt-4";
     this.appendChild(this.wrapper);
   }
 
