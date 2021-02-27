@@ -1,4 +1,5 @@
 import { BaseView } from "./baseView.js";
+import { viewRedirect } from "./router.js";
 
 class HomeView extends BaseView {
   constructor() {
@@ -23,12 +24,18 @@ class HomeView extends BaseView {
       </p>
       <h2>Learn More</h2>
       <p>
-        You can find more infiltersation about the data at
+        You can find more information about the data at
         <a href="https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp">
           https://dev.socrata.com/foundry/data.cityofchicago.org/aksk-kvfp
         </a>
       </p>
       `;
+  }
+  connectedCallback() {
+    this.animateIn();
+    Array.from(this.wrapper.getElementsByClassName("redirect-btn")).forEach((btn) => {
+      btn.onclick = () => viewRedirect(btn.getAttribute("redirect-to"));
+    });
   }
 }
 
