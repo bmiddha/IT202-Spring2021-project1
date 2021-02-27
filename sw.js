@@ -1,11 +1,5 @@
 const CACHE = "cache-update-and-refresh";
-const HTML_COMPONENTS_TO_CACHE = [
-  "navbar",
-  "home",
-  "data",
-  "map",
-  "about",
-];
+const HTML_COMPONENTS_TO_CACHE = ["navbar", "home", "data", "map", "about"];
 const COMPONENTS_TO_CACHE = ["router", "pwa", "form"];
 const UTIL_TO_CACHE = ["data", "icons", "loadComponent"];
 

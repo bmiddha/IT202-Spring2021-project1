@@ -33,7 +33,6 @@ class FormView extends BaseView {
         label: "Area (square feet)",
       },
     ];
-    console.log(this.inputs);
   }
 
   connectedCallback() {
@@ -43,7 +42,6 @@ class FormView extends BaseView {
 
   drawForm() {
     const cachedFilter = getFilter();
-    console.log(cachedFilter);
     if (!this.form) {
       this.form = document.createElement("form");
       this.wrapper.appendChild(this.form);

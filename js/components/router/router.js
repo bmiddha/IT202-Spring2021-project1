@@ -27,17 +27,10 @@ export class RouterView extends HTMLElement {
     }
   };
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log("Custom square element attributes changed.");
-    console.log(name, oldValue, newValue);
-  }
-
-  // Fires when an instance was inserted into the document
   connectedCallback() {
     window.addEventListener("hashchange", this.changeView);
   }
 
-  // Fires when an instance was removed from the document
   disconnectedCallback() {
     window.removeEventListener("hashchange", this.changeView);
   }
