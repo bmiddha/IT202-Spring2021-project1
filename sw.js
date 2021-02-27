@@ -51,13 +51,6 @@ self.addEventListener("fetch", (event) => {
         })()
       );
 
-      event.waitUntil(
-        (async function () {
-          await update(evt.request);
-          refresh();
-        })()
-      );
-
       // Returned the cached response if we have one, otherwise return the network response.
       return cachedResponse || networkResponsePromise;
     })()
