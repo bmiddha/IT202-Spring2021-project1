@@ -2,7 +2,7 @@
 import { Loader } from "https://cdn.skypack.dev/@googlemaps/js-api-loader";
 
 import { BaseView } from "../baseView/baseView.js";
-import { getFilteredData } from "../../util/apiClient.js";
+import { getFilteredData } from "../../util/data.js";
 import { mapPing, ruler } from "../../util/icons.js";
 
 const googleMapsAPIKey = "AIzaSyD6ZIMU-bD2Z8J8oeWZwZQ86VI6NhAH6p8";
@@ -58,25 +58,25 @@ const hydrate = (html) => {
                 title: community_area_name,
               });
               const contentString = `
-            <div class="card">
-              <div class="card-header">
-                ${pin}
+              <div class="card">
+                <div class="card-header">
+                  ${pin ?? "Not Available"}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${community_area_name ?? "Not Available"}
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    ${ruler}
+                    ${sq_ft ?? "Not Available"}
+                  </h6>
+                </div>
+                <div class="card-footer text-muted">
+                  ${mapPing}
+                  ${address ?? "Not Available"}
+                </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">
-                  ${community_area_name}
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  ${ruler}
-                  ${sq_ft}
-                </h6>
-              </div>
-              <div class="card-footer text-muted">
-                ${mapPing}
-                ${address}
-              </div>
-            </div>
-            `;
+              `;
               const infowindow = new google.maps.InfoWindow({
                 content: contentString,
               });
